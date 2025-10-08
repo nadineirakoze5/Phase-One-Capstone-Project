@@ -275,9 +275,9 @@ public class UniversityManagementSystem {
         if (yearLevel > 0) student.setYearLevel(yearLevel);
         
         if (studentDAO.updateStudent(student)) {
-            System.out.println("✓ Student updated successfully!");
+            System.out.println(" Student updated successfully!");
         } else {
-            System.out.println("✗ Failed to update student.");
+            System.out.println(" Failed to update student.");
         }
     }
     
