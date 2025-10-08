@@ -61,10 +61,13 @@ public class UndergraduateStudent extends Student {
     public String getRole() {
         return "Undergraduate Student";
     }
-    
+
     @Override
     public String toString() {
-        return String.format("UndergraduateStudent{id='%s', studentId='%s', name='%s %s', major='%s', year=%d, gpa=%.2f, honors=%s}", 
-                getId(), getStudentId(), getFullName(), getMajor(), getYearLevel(), getGpa(), isHonorsStudent);
+        double displayGpa = (getGpa() == null) ? 0.0 : getGpa();
+        return String.format(
+                "GraduateStudent{id='%s', studentId='%s', name='%s', major='%s', year=%d, gpa=%.2f, program='%s'}",
+                getId(), getStudentId(), getFullName(), getMajor(), getYearLevel(), displayGpa, degreeProgram
+        );
     }
 }

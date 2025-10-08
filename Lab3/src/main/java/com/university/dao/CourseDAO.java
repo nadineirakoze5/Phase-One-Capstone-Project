@@ -187,8 +187,7 @@ public class CourseDAO {
         String location = rs.getString("location");
         
         Course course = new Course(courseId, courseName, description, credits, department, schedule, location);
-        
-        // Set instructor if available
+
         String instructorId = rs.getString("instructor_id");
         if (instructorId != null) {
             String firstName = rs.getString("first_name");

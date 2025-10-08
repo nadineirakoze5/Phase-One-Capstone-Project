@@ -116,10 +116,13 @@ public class Student extends Person {
     public String getRole() {
         return "Student";
     }
-    
+
     @Override
     public String toString() {
-        return String.format("Student{id='%s', studentId='%s', name='%s %s', major='%s', year=%d, gpa=%.2f}", 
-                id, studentId, getFullName(), major, yearLevel, gpa);
+        double displayGpa = (gpa == null) ? 0.0 : gpa;
+        return String.format(
+                "Student{id='%s', studentId='%s', name='%s', major='%s', year=%d, gpa=%.2f}",
+                id, studentId, getFullName(), major, yearLevel, displayGpa
+        );
     }
 }
