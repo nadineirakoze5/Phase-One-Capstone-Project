@@ -6,7 +6,7 @@ public class Student extends Person {
     private String studentId;
     private String major;
     private int yearLevel;
-    private double gpa;
+    private Double gpa;
     private List<Course> enrolledCourses;
     private Map<Course, Double> courseGrades;
     
@@ -45,11 +45,11 @@ public class Student extends Person {
         this.yearLevel = yearLevel;
     }
     
-    public double getGpa() {
+    public Double getGpa() {
         return gpa;
     }
     
-    public void setGpa(double gpa) {
+    public void setGpa(Double gpa) {
         this.gpa = gpa;
     }
     

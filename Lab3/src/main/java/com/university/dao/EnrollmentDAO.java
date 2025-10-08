@@ -15,12 +15,7 @@ public class EnrollmentDAO {
         this.dbConnection = DatabaseConnection.getInstance();
     }
     
-    /**
-     * Enrolls a student in a course.
-     * @param studentId Student ID
-     * @param courseId Course ID
-     * @return true if successful, false otherwise
-     */
+
     public boolean enrollStudent(String studentId, String courseId) {
         String sql = "INSERT INTO enrollments (student_id, course_id, status) VALUES (?, ?, 'ACTIVE') " +
                     "ON CONFLICT (student_id, course_id) DO UPDATE SET status = 'ACTIVE'";
@@ -40,12 +35,7 @@ public class EnrollmentDAO {
         }
     }
     
-    /**
-     * Drops a student from a course.
-     * @param studentId Student ID
-     * @param courseId Course ID
-     * @return true if successful, false otherwise
-     */
+
     public boolean dropStudent(String studentId, String courseId) {
         String sql = "UPDATE enrollments SET status = 'DROPPED' WHERE student_id = ? AND course_id = ?";
         
@@ -64,13 +54,7 @@ public class EnrollmentDAO {
         }
     }
     
-    /**
-     * Adds a grade for a student in a course.
-     * @param studentId Student ID
-     * @param courseId Course ID
-     * @param grade Grade to assign
-     * @return true if successful, false otherwise
-     */
+
     public boolean addGrade(String studentId, String courseId, double grade) {
         String sql = "UPDATE enrollments SET grade = ? WHERE student_id = ? AND course_id = ? AND status = 'ACTIVE'";
         
@@ -90,12 +74,7 @@ public class EnrollmentDAO {
         }
     }
     
-    /**
-     * Gets the grade for a student in a specific course.
-     * @param studentId Student ID
-     * @param courseId Course ID
-     * @return Grade or -1 if not found
-     */
+
     public double getGrade(String studentId, String courseId) {
         String sql = "SELECT grade FROM enrollments WHERE student_id = ? AND course_id = ? AND status = 'ACTIVE'";
         
@@ -117,11 +96,7 @@ public class EnrollmentDAO {
         return -1;
     }
     
-    /**
-     * Gets all courses a student is enrolled in.
-     * @param studentId Student ID
-     * @return List of course IDs
-     */
+
     public List<String> getStudentCourses(String studentId) {
         String sql = "SELECT course_id FROM enrollments WHERE student_id = ? AND status = 'ACTIVE'";
         List<String> courseIds = new ArrayList<>();
@@ -143,11 +118,7 @@ public class EnrollmentDAO {
         return courseIds;
     }
     
-    /**
-     * Gets all students enrolled in a specific course.
-     * @param courseId Course ID
-     * @return List of student IDs
-     */
+
     public List<String> getCourseStudents(String courseId) {
         String sql = "SELECT student_id FROM enrollments WHERE course_id = ? AND status = 'ACTIVE'";
         List<String> studentIds = new ArrayList<>();
@@ -169,10 +140,7 @@ public class EnrollmentDAO {
         return studentIds;
     }
     
-    /**
-     * Gets detailed enrollment information with student and course details.
-     * @return List of enrollment records with JOIN data
-     */
+
     public List<EnrollmentRecord> getAllEnrollments() {
         String sql = "SELECT e.*, s.first_name, s.last_name, s.student_id as student_number, " +
                     "c.course_name, c.credits FROM enrollments e " +
@@ -207,12 +175,7 @@ public class EnrollmentDAO {
         return enrollments;
     }
     
-    /**
-     * Checks if a student is enrolled in a course.
-     * @param studentId Student ID
-     * @param courseId Course ID
-     * @return true if enrolled, false otherwise
-     */
+
     public boolean isEnrolled(String studentId, String courseId) {
         String sql = "SELECT COUNT(*) FROM enrollments WHERE student_id = ? AND course_id = ? AND status = 'ACTIVE'";
         
@@ -234,11 +197,7 @@ public class EnrollmentDAO {
         return false;
     }
     
-    /**
-     * Gets enrollment statistics for a course.
-     * @param courseId Course ID
-     * @return EnrollmentStats object with statistics
-     */
+
     public EnrollmentStats getCourseStats(String courseId) {
         String sql = "SELECT COUNT(*) as total_enrolled, AVG(grade) as average_grade, " +
                     "COUNT(CASE WHEN grade IS NOT NULL THEN 1 END) as graded_count " +
@@ -265,9 +224,7 @@ public class EnrollmentDAO {
         return new EnrollmentStats();
     }
     
-    /**
-     * Inner class to represent enrollment records with JOIN data.
-     */
+
     public static class EnrollmentRecord {
         private String studentId;
         private String studentName;
@@ -279,7 +236,7 @@ public class EnrollmentDAO {
         private Timestamp enrollmentDate;
         private String status;
         
-        // Getters and setters
+
         public String getStudentId() { return studentId; }
         public void setStudentId(String studentId) { this.studentId = studentId; }
         
@@ -314,15 +271,13 @@ public class EnrollmentDAO {
         }
     }
     
-    /**
-     * Inner class to represent enrollment statistics.
-     */
+
     public static class EnrollmentStats {
         private int totalEnrolled;
         private double averageGrade;
         private int gradedCount;
         
-        // Getters and setters
+
         public int getTotalEnrolled() { return totalEnrolled; }
         public void setTotalEnrolled(int totalEnrolled) { this.totalEnrolled = totalEnrolled; }
         
