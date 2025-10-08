@@ -7,9 +7,9 @@ import java.util.Properties;
 
 public class DatabaseConnection {
     private static DatabaseConnection instance;
-    private static final String DB_URL = "jdbc:postgresql://localhost:5433/university_management";
-    private static final String DB_USER = "postgres";
-    private static final String DB_PASSWORD = "123";
+    private static final String DB_URL = System.getenv("URL");
+    private static final String DB_USER = System.getenv("USER");
+    private static final String DB_PASSWORD = System.getenv("PASSWORD");
     
     private DatabaseConnection() {
     }

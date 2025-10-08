@@ -289,9 +289,9 @@ public class UniversityManagementSystem {
         
         if (confirmation.equals("y") || confirmation.equals("yes")) {
             if (studentDAO.deleteStudent(studentId)) {
-                System.out.println("✓ Student deleted successfully!");
+                System.out.println(" Student deleted successfully!");
             } else {
-                System.out.println("✗ Failed to delete student.");
+                System.out.println(" Failed to delete student.");
             }
         } else {
             System.out.println("Deletion cancelled.");
@@ -358,9 +358,9 @@ public class UniversityManagementSystem {
             Course course = new Course(courseId, courseName, description, credits, department, schedule, location);
             
             if (courseDAO.createCourse(course)) {
-                System.out.println("✓ Course added successfully!");
+                System.out.println(" Course added successfully!");
             } else {
-                System.out.println("✗ Failed to add course. Please check your input.");
+                System.out.println(" Failed to add course. Please check your input.");
             }
             
         } catch (Exception e) {
@@ -440,9 +440,9 @@ public class UniversityManagementSystem {
         if (!location.isEmpty()) course.setLocation(location);
         
         if (courseDAO.updateCourse(course)) {
-            System.out.println("✓ Course updated successfully!");
+            System.out.println(" Course updated successfully!");
         } else {
-            System.out.println("✗ Failed to update course.");
+            System.out.println(" Failed to update course.");
         }
     }
     
@@ -454,9 +454,9 @@ public class UniversityManagementSystem {
         
         if (confirmation.equals("y") || confirmation.equals("yes")) {
             if (courseDAO.deleteCourse(courseId)) {
-                System.out.println("✓ Course deleted successfully!");
+                System.out.println(" Course deleted successfully!");
             } else {
-                System.out.println("✗ Failed to delete course.");
+                System.out.println(" Failed to delete course.");
             }
         } else {
             System.out.println("Deletion cancelled.");
@@ -513,9 +513,9 @@ public class UniversityManagementSystem {
         String courseId = getStringInput("Enter course ID: ");
         
         if (enrollmentDAO.enrollStudent(studentId, courseId)) {
-            System.out.println("✓ Student enrolled successfully!");
+            System.out.println(" Student enrolled successfully!");
         } else {
-            System.out.println("✗ Failed to enroll student. Please check student and course IDs.");
+            System.out.println(" Failed to enroll student. Please check student and course IDs.");
         }
     }
     
@@ -524,9 +524,9 @@ public class UniversityManagementSystem {
         String courseId = getStringInput("Enter course ID: ");
         
         if (enrollmentDAO.dropStudent(studentId, courseId)) {
-            System.out.println("✓ Student dropped successfully!");
+            System.out.println(" Student dropped successfully!");
         } else {
-            System.out.println("✗ Failed to drop student. Please check student and course IDs.");
+            System.out.println(" Failed to drop student. Please check student and course IDs.");
         }
     }
     
@@ -536,9 +536,9 @@ public class UniversityManagementSystem {
         double grade = getDoubleInput("Enter grade: ");
         
         if (enrollmentDAO.addGrade(studentId, courseId, grade)) {
-            System.out.println("✓ Grade added successfully!");
+            System.out.println(" Grade added successfully!");
         } else {
-            System.out.println("✗ Failed to add grade. Please check student and course IDs.");
+            System.out.println(" Failed to add grade. Please check student and course IDs.");
         }
     }
     
