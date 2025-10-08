@@ -60,9 +60,9 @@ public class UniversityManagementSystem {
         boolean connected = dbConnection.testConnection();
         
         if (connected) {
-            System.out.println("✓ Database connection successful!");
+            System.out.println(" Database connection successful!");
         } else {
-            System.out.println("✗ Database connection failed!");
+            System.out.println(" Database connection failed!");
         }
         
         return connected;
@@ -193,9 +193,9 @@ public class UniversityManagementSystem {
             }
             
             if (studentDAO.createStudent(student)) {
-                System.out.println("✓ Student added successfully!");
+                System.out.println(" Student added successfully!");
             } else {
-                System.out.println("✗ Failed to add student. Please check your input.");
+                System.out.println(" Failed to add student. Please check your input.");
             }
             
         } catch (Exception e) {
@@ -640,7 +640,7 @@ public class UniversityManagementSystem {
         
         if (!students.isEmpty()) {
             double avgGPA = students.stream()
-                    .mapToDouble(Student::getGpa)
+                    .mapToDouble(s -> s.getGpa() != null ? s.getGpa() : 0.0)
                     .average()
                     .orElse(0.0);
             System.out.println("Average GPA: " + String.format("%.2f", avgGPA));

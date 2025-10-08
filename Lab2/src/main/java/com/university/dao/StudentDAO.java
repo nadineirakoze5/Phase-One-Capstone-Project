@@ -34,7 +34,7 @@ public class StudentDAO {
             stmt.setInt(8, student.getYearLevel());
             stmt.setDouble(9, student.getGpa());
             
-            // Set student type specific fields
+
             if (student instanceof UndergraduateStudent) {
                 UndergraduateStudent undergrad = (UndergraduateStudent) student;
                 stmt.setString(10, "UNDERGRADUATE");
@@ -67,26 +67,6 @@ public class StudentDAO {
             System.err.println("Error creating student: " + e.getMessage());
             return false;
         }
-    }
-    
-    public Student getStudentById(String studentId) {
-        String sql = "SELECT * FROM students WHERE id = ?";
-        
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            
-            stmt.setString(1, studentId);
-            ResultSet rs = stmt.executeQuery();
-            
-            if (rs.next()) {
-                return mapResultSetToStudent(rs);
-            }
-            
-        } catch (SQLException e) {
-            System.err.println("Error retrieving student: " + e.getMessage());
-        }
-        
-        return null;
     }
     
     public Student getStudentByStudentId(String studentId) {
@@ -146,7 +126,7 @@ public class StudentDAO {
             stmt.setInt(7, student.getYearLevel());
             stmt.setDouble(8, student.getGpa());
             
-            // Set student type specific fields
+
             if (student instanceof UndergraduateStudent) {
                 UndergraduateStudent undergrad = (UndergraduateStudent) student;
                 stmt.setString(9, "UNDERGRADUATE");
